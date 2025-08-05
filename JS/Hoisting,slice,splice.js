@@ -22,6 +22,7 @@ console.log(a,b,c); // error on B
 
 
 console.log(a); // undefined
+
 // Due to temporal dead zone
 console.log(b); // Reference Error cannot access before initialization
 console.log(c); // Reference Error cannot access before initialization
