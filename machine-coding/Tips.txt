@@ -1,0 +1,9 @@
+First 5 mins spend it on clarifying the problem statement --
+1. Like where to get the data from?
+2. What happens if data fails?
+3. Maintanability and Scalability of the project.
+
+
+Important points:
+1. Focus on feature with minamlistic design.
+2. if time is running out focus on feature only
