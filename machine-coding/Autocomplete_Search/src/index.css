@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+#search-input {
+  width: 500px;
+  padding: 5px;
+}
+
+.results-container {
+  width: 500px;
+  margin: auto;
+  list-style: none;
+  border: 1px solid black;
+  padding: 5px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.results-container > li {
+  padding: 5px;
+  text-align: left;
+}
+
+.results-container > li:hover {
+  cursor: pointer;
+  background-color: beige;
+}
