@@ -1,0 +1,21 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+
+.container {
+  text-align: left;
+  padding-left: 20px;
+  max-width: 150px;
+}
+
+.folder {
+  cursor: pointer;
+}
+
+.folder-icon {
+  width: 20px;
+  margin-left: 20px;
+  cursor: pointer;
+}
