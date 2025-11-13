@@ -3,7 +3,7 @@ import json from "./data/data.json";
 // import { ReactComponent as AddFolderIcon } from './assets/addFolder.svg';
 // Renders list of objects
 // Expand and collapse for folders
-const List = ({ list }) => {
+const List = ({ list, addNodeToList }) => {
   const [expand, setExpand] = useState({});
   console.log(expand, "exp");
   const handleFolder = (name) => {
@@ -26,21 +26,26 @@ const List = ({ list }) => {
                 </>
               )}
               <span>{node.name}</span>
-              {node?.isFolder &&                   <span onClick={() => addNodeToList(node.id)} className="folder-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      class="bi bi-file-earmark-plus-fill"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0" />
-                    </svg>
-                  </span>}
+              {node?.isFolder && (
+                <span
+                  onClick={() => addNodeToList(node.id)}
+                  className="folder-icon"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-file-earmark-plus-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0M9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M8.5 7v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 1 0" />
+                  </svg>
+                </span>
+              )}
             </div>
             {expand[node.name] && node?.children && (
-              <List list={node.children} />
+              <List list={node.children} addNodeToList={addNodeToList} />
             )}
           </>
         );
@@ -52,14 +57,31 @@ const List = ({ list }) => {
 const App = () => {
   const [data, setData] = useState(json);
   const addNodeToList = (parentId) => {
-    const updateTree = () => {
-      
-    }
-  }
+    const name = prompt("Enter Name");
+    const updateTree = (list) => {
+      return list.map((node) => {
+        if (node.id === parentId) {
+          // Eg: checking if i am clicking public add new folder?
+          return {
+            ...node,
+            children: [
+              ...node.children,
+              { id: "123", name: name, isFolder: true, children: [] },
+            ],
+          }
+        }
+        if (node.children) {
+          return { ...node, children: updateTree(node.children) }
+        }
+        return node
+      });
+    };
+    setData((prev) => updateTree(prev))
+  };
   return (
     <div className="App">
       <h1>File/Folder Explorer</h1>
-      <List list={json} />
+      <List list={json} addNodeToList={addNodeToList} />
     </div>
   );
 };
