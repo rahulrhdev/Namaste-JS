@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        h2{
+            border: 1px solid black; 
+            border-style: inset;
+            border-width: 10px;
+            border-color: salmon;
+            border-top-color: black;
+            padding: 25px;
+        }
+        p{
+            margin: 15px;
+            border: 2px solid black;
+        }
+        table{
+            border: 2px solid black;
+            tr{
+                background-color: orange;
+            }
+            th{
+                color: green;
+            }
+            td{
+                border: 2px solid red;
+            }
+        }
+        /* Below is a descendant selector */
+        div p{
+            color: purple;
+        }
+        body > p {
+            color: cadetblue;
+        }
+    </style>
+    <!-- Element selector, ID selector, Class selector, Universal selector * -->
+</head>
+<body>
+    <h2>Box Model Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus, eligendi!</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi officia ea, nihil quis pariatur atque sunt porro officiis? Sint, corrupti?</p>
+    <table>
+        <tr>
+            <th>Col1</th>
+            <th>Col2</th>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+        </tr>
+    </table>
+    <div>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed, ut!</p>
+    </div>
+</body>
+</html>
